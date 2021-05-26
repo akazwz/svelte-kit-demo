@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+	import { session } from '$app/stores';
 	import { post } from '$lib/utils';
 
 	let username = 'zwz';
@@ -9,23 +9,28 @@
 		const resData = await post('/v1/token', { username, password });
 		const { code, data, msg } = resData;
 		if (code === 4001) {
-			alert(msg)
+			alert(msg);
 		}
 		if (code === 2000) {
 			const { expires_at, token, user } = data;
 			const { nick_name, username } = user;
-			alert('expires_at:' + expires_at)
-			alert('token:' + token)
-			alert('username:' + username)
-			alert('nick_name:' + nick_name)
+			$session.token = token;
+			alert('expires_at:' + expires_at);
+			alert('token:' + token);
+			alert('username:' + username);
+			alert('nick_name:' + nick_name);
 		}
 	}
 
+	function testLocals() {
+		alert($session.token);
+	}
 </script>
+<title>Test</title>
 <div class='container'>
-	{$page.path}
 	<p><strong> this is test page</strong></p>
 	<button on:click={test}>test</button>
+	<button on:click={testLocals}>testLocals</button>
 </div>
 <style>
     .container p {

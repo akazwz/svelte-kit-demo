@@ -23,7 +23,7 @@
         max-width: 1024px;
         margin: 0 auto;
         box-sizing: border-box;
-        font-family: "Carlito",serif;
+        font-family: "Futura",sans-serif ;
         font-size: large;
     }
 
